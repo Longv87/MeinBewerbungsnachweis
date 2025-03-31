@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Bewerbungsnachweis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        table {
+            width: 100%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        .status-pending {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .status-interview {
+            color: #2980b9;
+            font-weight: bold;
+        }
+        
+        .status-rejected {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .status-accepted {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .add-form {
+            margin-top: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mein Bewerbungsnachweis</h1>
+
+        <table>
+            <tr>
+                <th>Firmenname</th>
+                <th>Position</th>
+                <th>Adresse</th>
+                <th>Datum</th>
+                <th>Kontaktperson</th>
+                <th>Status</th>
+                <th>Notizen</th>
+            </tr>
+            <tr>
+                <td>Musterfirma GmbH</td>
+                <td>Software Entwickler</td>
+                <td>Musterstraße 1, 12345 Musterstadt</td>
+                <td>15.03.2025</td>
+                <td>Herr Müller</td>
+                <td class="status-interview">Vorstellungsgespräch</td>
+                <td>Gespräch am 05.04.2025 um 14:00 Uhr</td>
+            </tr>
+            <tr>
+                <td>Beispiel AG</td>
+                <td>Web Developer</td>
+                <td>Beispielweg 2, 54321 Beispielstadt</td>
+                <td>20.03.2025</td>
+                <td>Frau Schmidt</td>
+                <td class="status-pending">Gesendet</td>
+                <td>Online-Bewerbung über Firmenwebsite</td>
+            </tr>
+            <tr>
+                <td>Technik Solutions GmbH</td>
+                <td>Frontend Entwickler</td>
+                <td>Technikstraße 42, 67890 Techstadt</td>
+                <td>25.03.2025</td>
+                <td>Herr Weber</td>
+                <td class="status-accepted">Angenommen</td>
+                <td>Vertrag erhalten, Startdatum: 01.06.2025</td>
+            </tr>
+            <tr>
+                <td>Digital Innovations AG</td>
+                <td>Full-Stack Entwickler</td>
+                <td>Innovationsallee 7, 98765 Neustadt</td>
+                <td>28.03.2025</td>
+                <td>Frau Meyer</td>
+                <td class="status-rejected">Abgelehnt</td>
+                <td>Absage per E-Mail am 30.03.2025</td>
+            </tr>
+        </table>
+
+        <div class="add-form">
+            <h2>Neue Bewerbung hinzufügen</h2>
+            <form id="application-form">
+                <div class="form-group">
+                    <label for="company">Firmenname:</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="position">Position:</label>
+                    <input type="text" id="position" name="position" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Adresse:</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Datum:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact">Kontaktperson:</label>
+                    <input type="text" id="contact" name="contact">
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" required>
+                        <option value="Gesendet">Gesendet</option>
+                        <option value="Vorstellungsgespräch">Vorstellungsgespräch</option>
+                        <option value="Angenommen">Angenommen</option>
+                        <option value="Abgelehnt">Abgelehnt</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Notizen:</label>
+                    <textarea id="notes" name="notes" rows="3"></textarea>
+                </div>
+                
+                <button type="submit">Hinzufügen</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, this would save the data to a database
+            // For now, we'll just add it to the table
+            
+            const company = document.getElementById('company').value;
+            const position = document.getElementById('position').value;
+            const address = document.getElementById('address').value;
+            const date = document.getElementById('date').value;
+            const contact = document.getElementById('contact').value;
+            const status = document.getElementById('status').value;
+            const notes = document.getElementById('notes').value;
+            
+            // Format the date from YYYY-MM-DD to DD.MM.YYYY
+            const formattedDate = date ? new Date(date).toLocaleDateString('de-DE') : '';
+            
+            // Create a new row
+            const table = document.querySelector('table');
+            const newRow = table.insertRow(-1);
+            
+            // Insert cells
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            const cell5 = newRow.insertCell(4);
+            const cell6 = newRow.insertCell(5);
+            const cell7 = newRow.insertCell(6);
+            
+            // Add data to cells
+            cell1.textContent = company;
+            cell2.textContent = position;
+            cell3.textContent = address;
+            cell4.textContent = formattedDate;
+            cell5.textContent = contact;
+            
+            // Add status with appropriate class
+            cell6.textContent = status;
+            if (status === 'Gesendet') {
+                cell6.className = 'status-pending';
+            } else if (status === 'Vorstellungsgespräch') {
+                cell6.className = 'status-interview';
+            } else if (status === 'Angenommen') {
+                cell6.className = 'status-accepted';
+            } else if (status === 'Abgelehnt') {
+                cell6.className = 'status-rejected';
+            }
+            
+            cell7.textContent = notes;
+            
+            // Reset the form
+            this.reset();
+            
+            // Show confirmation
+            alert('Bewerbung wurde hinzugefügt!');
+        });
+    </script>
+</body>
+</html>
