@@ -124,6 +124,7 @@
                 <th>Adresse</th>
                 <th>Datum</th>
                 <th>Kontaktperson</th>
+                <th>E-Mail</th>
                 <th>Status</th>
                 <th>Notizen</th>
                 <th>Aktionen</th>
@@ -134,36 +135,11 @@
                 <td>Musterstraße 1, 12345 Musterstadt</td>
                 <td>15.03.2025</td>
                 <td>Herr Müller</td>
+                <td>müller@muster.de</td>
                 <td class="status-interview">Vorstellungsgespräch</td>
                 <td>Gespräch am 05.04.2025 um 14:00 Uhr</td>
             </tr>
-            <tr>
-                <td>Beispiel AG</td>
-                <td>Web Developer</td>
-                <td>Beispielweg 2, 54321 Beispielstadt</td>
-                <td>20.03.2025</td>
-                <td>Frau Schmidt</td>
-                <td class="status-pending">Gesendet</td>
-                <td>Online-Bewerbung über Firmenwebsite</td>
-            </tr>
-            <tr>
-                <td>Technik Solutions GmbH</td>
-                <td>Frontend Entwickler</td>
-                <td>Technikstraße 42, 67890 Techstadt</td>
-                <td>25.03.2025</td>
-                <td>Herr Weber</td>
-                <td class="status-accepted">Angenommen</td>
-                <td>Vertrag erhalten, Startdatum: 01.06.2025</td>
-            </tr>
-            <tr>
-                <td>Digital Innovations AG</td>
-                <td>Full-Stack Entwickler</td>
-                <td>Innovationsallee 7, 98765 Neustadt</td>
-                <td>28.03.2025</td>
-                <td>Frau Meyer</td>
-                <td class="status-rejected">Abgelehnt</td>
-                <td>Absage per E-Mail am 30.03.2025</td>
-            </tr>
+
         </table>
 
         <div class="add-form">
@@ -192,6 +168,11 @@
                 <div class="form-group">
                     <label for="contact">Kontaktperson:</label>
                     <input type="text" id="contact" name="contact">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-Mail:</label>
+                    <input type="text" id="email" name="email">
                 </div>
                 
                 <div class="form-group">
@@ -227,6 +208,7 @@
                 <th>Adresse</th>
                 <th>Datum</th>
                 <th>Kontaktperson</th>
+                <th>E-Mail</th>
                 <th>Status</th>
                 <th>Notizen</th>
                 <th>Aktionen</th>
@@ -240,6 +222,7 @@
                     <td>${app.address}</td>
                     <td>${app.formattedDate}</td>
                     <td>${app.contact}</td>
+                    <td>${app.email}</td>
                     <td class="${getStatusClass(app.status)}">${app.status}</td>
                     <td>${app.notes}</td>
                     <td><button class="delete-btn" data-index="${index}">🗑️ Löschen</button></td>
@@ -280,6 +263,7 @@
                 address: document.getElementById('address').value,
                 date: document.getElementById('date').value,
                 contact: document.getElementById('contact').value,
+                email: document.getElementById('email').value,
                 status: document.getElementById('status').value,
                 notes: document.getElementById('notes').value,
                 formattedDate: document.getElementById('date').value 
