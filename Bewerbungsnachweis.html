@@ -126,6 +126,7 @@
                 <th>Kontaktperson</th>
                 <th>Status</th>
                 <th>Notizen</th>
+                <th>Aktionen</th>
             </tr>
             <tr>
                 <td>Musterfirma GmbH</td>
@@ -214,61 +215,82 @@
     </div>
 
     <script>
+        // Daten aus localStorage laden
+        let applications = JSON.parse(localStorage.getItem('applications') || '[]');
+        
+        // Tabelle initialisieren
+        function initTable() {
+            const table = document.querySelector('table');
+            table.innerHTML = `<tr>
+                <th>Firmenname</th>
+                <th>Position</th>
+                <th>Adresse</th>
+                <th>Datum</th>
+                <th>Kontaktperson</th>
+                <th>Status</th>
+                <th>Notizen</th>
+                <th>Aktionen</th>
+            </tr>`;
+            
+            applications.forEach((app, index) => {
+                const newRow = table.insertRow(-1);
+                newRow.innerHTML = `
+                    <td>${app.company}</td>
+                    <td>${app.position}</td>
+                    <td>${app.address}</td>
+                    <td>${app.formattedDate}</td>
+                    <td>${app.contact}</td>
+                    <td class="${getStatusClass(app.status)}">${app.status}</td>
+                    <td>${app.notes}</td>
+                    <td><button class="delete-btn" data-index="${index}">🗑️ Löschen</button></td>
+                `;
+            });
+        }
+        
+        // Status-Klasse ermitteln
+        function getStatusClass(status) {
+            return {
+                'Gesendet': 'status-pending',
+                'Vorstellungsgespräch': 'status-interview',
+                'Angenommen': 'status-accepted',
+                'Abgelehnt': 'status-rejected'
+            }[status] || '';
+        }
+        
+        // Event-Listener für Löschbuttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-btn')) {
+                const index = e.target.dataset.index;
+                applications.splice(index, 1);
+                localStorage.setItem('applications', JSON.stringify(applications));
+                initTable();
+            }
+        });
+        
+        // Initialisierung beim Laden
+        initTable();
+        
+        // Formular-Event-Listener
         document.getElementById('application-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // In a real application, this would save the data to a database
-            // For now, we'll just add it to the table
+            const application = {
+                company: document.getElementById('company').value,
+                position: document.getElementById('position').value,
+                address: document.getElementById('address').value,
+                date: document.getElementById('date').value,
+                contact: document.getElementById('contact').value,
+                status: document.getElementById('status').value,
+                notes: document.getElementById('notes').value,
+                formattedDate: document.getElementById('date').value 
+                    ? new Date(document.getElementById('date').value).toLocaleDateString('de-DE') 
+                    : ''
+            };
             
-            const company = document.getElementById('company').value;
-            const position = document.getElementById('position').value;
-            const address = document.getElementById('address').value;
-            const date = document.getElementById('date').value;
-            const contact = document.getElementById('contact').value;
-            const status = document.getElementById('status').value;
-            const notes = document.getElementById('notes').value;
-            
-            // Format the date from YYYY-MM-DD to DD.MM.YYYY
-            const formattedDate = date ? new Date(date).toLocaleDateString('de-DE') : '';
-            
-            // Create a new row
-            const table = document.querySelector('table');
-            const newRow = table.insertRow(-1);
-            
-            // Insert cells
-            const cell1 = newRow.insertCell(0);
-            const cell2 = newRow.insertCell(1);
-            const cell3 = newRow.insertCell(2);
-            const cell4 = newRow.insertCell(3);
-            const cell5 = newRow.insertCell(4);
-            const cell6 = newRow.insertCell(5);
-            const cell7 = newRow.insertCell(6);
-            
-            // Add data to cells
-            cell1.textContent = company;
-            cell2.textContent = position;
-            cell3.textContent = address;
-            cell4.textContent = formattedDate;
-            cell5.textContent = contact;
-            
-            // Add status with appropriate class
-            cell6.textContent = status;
-            if (status === 'Gesendet') {
-                cell6.className = 'status-pending';
-            } else if (status === 'Vorstellungsgespräch') {
-                cell6.className = 'status-interview';
-            } else if (status === 'Angenommen') {
-                cell6.className = 'status-accepted';
-            } else if (status === 'Abgelehnt') {
-                cell6.className = 'status-rejected';
-            }
-            
-            cell7.textContent = notes;
-            
-            // Reset the form
+            applications.push(application);
+            localStorage.setItem('applications', JSON.stringify(applications));
+            initTable();
             this.reset();
-            
-            // Show confirmation
             alert('Bewerbung wurde hinzugefügt!');
         });
     </script>
